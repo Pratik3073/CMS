@@ -66,6 +66,10 @@ a {color: #8D0D19;}
     color: #D4E6F4;
     text-decoration: none;
 }
+#navigation li.selected a {
+    font-weight: bold;
+}
+
 ul.subjects{
     padding-left: 0;
     list-style: none;

@@ -10,7 +10,7 @@
 <table id="structure">
     <tr>
         <td id="navigation">
-            <?php navigation($sel_subject,$sel_page)?>
+            <?php echo navigation($sel_subject,$sel_page)?>
                 <br />
                 <a href="new_subject.php">+Add a new subject </a>
         </td>

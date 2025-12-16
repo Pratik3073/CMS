@@ -92,7 +92,7 @@ function find_selected_page(){
 function navigation($sel_subject,$sel_page){
     global $connection;
 
-    echo "<ul class=\"subjects\">";
+    $output ="<ul class=\"subjects\">";
     
     $subject_set = get_all_subject($connection);
 
@@ -100,34 +100,35 @@ function navigation($sel_subject,$sel_page){
     while ($subject = mysqli_fetch_assoc($subject_set)) {
 
         // open <li> and add selected class if needed
-        echo "<li";
+        $output .= "<li";
         if (!is_null($sel_subject) && $subject["id"] == $sel_subject['id']) {
 
-            echo " class=\"selected\"";
+            $output.= " class=\"selected\"";
         }
-        echo "><a href=\"content.php?subj=" . urlencode($subject["id"]) . 
+        $output.= "><a href=\"content.php?subj=" . urlencode($subject["id"]) . 
                 "\">
                 {$subject["menu_name"]}</a></li>";
 
         // pages
         $page_set = get_pages_for_subject($connection, $subject["id"]);
 
-        echo "<ul class=\"pages\">";
+        $output.= "<ul class=\"pages\">";
         while ($page = mysqli_fetch_assoc($page_set)) {
-            echo "<li";
+            $output.= "<li";
             if (!is_null($sel_page) && $page["id"] == $sel_page['id']) {
 
-                echo " class=\"selected\"";
+                $output.= " class=\"selected\"";
             }
-           echo " >
+            $output.= " >
                     <a href=\"content.php?page=" . urlencode($page["id"]) . "\">
                         {$page['menu_name']}
                     </a>
                   </li>";
         }
-        echo "</ul>";
+        $output.= "</ul>";
     }
     
- echo "</ul>";
+    $output.= "</ul>";
+    return $output;
 }
 ?>

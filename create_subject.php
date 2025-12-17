@@ -8,9 +8,13 @@ ini_set('display_errors', 1);
 <?php 
 $errors = [];
 
-// ✅ FIX 1: run validation ONLY when form is submitted
-if (isset($_POST['submit'])) {
+var_dump("test");
+var_dump($_POST);
 
+
+// ✅ FIX 1: run validation ONLY when form is submitted
+if (isset($_POST)) {
+var_dump("test2");
     //form Validation
     $required_fields = ["menu_name","position","visible"];
     foreach ($required_fields as $fieldname) {

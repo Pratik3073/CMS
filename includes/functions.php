@@ -80,21 +80,33 @@ function get_by_page_id($page_id)
     }
 }
 
-function find_selected_page(){
+function find_selected_page() {
     global $sel_subject;
     global $sel_page;
-    if(isset($_GET['subj'])){
-        $sel_subject=get_subject_by_id($_GET['subj']);
-        $sel_page = NULL;
-     }elseif(isset($_GET['page'])){
-        $sel_page = get_by_page_id($_GET['page']);
-        $sel_subject = get_subject_by_id($sel_page['subject_id']);
-    
-    }else{
-        $sel_subject = NULL;
-        $sel_page = NULL;
-     }
+
+    if (isset($_GET['subj'])) {
+
+        $sel_subject = get_subject_by_id((int) $_GET['subj']);
+        $sel_page = null;
+
+    } elseif (isset($_GET['page'])) {
+
+        $sel_page = get_by_page_id((int) $_GET['page']);
+
+        if ($sel_page) {
+            $sel_subject = get_subject_by_id($sel_page['subject_id']);
+        } else {
+            // page id invalid
+            $sel_subject = null;
+        }
+
+    } else {
+
+        $sel_subject = null;
+        $sel_page = null;
+    }
 }
+
 function navigation($sel_subject,$sel_page){
     global $connection;
 

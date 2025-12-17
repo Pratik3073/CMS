@@ -132,12 +132,34 @@ if (isset($_POST['submit'])) {
                 </p>
 
                 <input type="submit" name="submit" value="Edit Subject" />
-            </form>
+                &nbsp;&nbsp;
+                <a href="delete_subject.php?subj=<?php echo urlencode($sel_subject['id']); ?>" onclick="return confirm('are you sure?');">Delete subject</a>
+                </form>
+<br />
+<a href="content.php">Cancel</a>
 
-            <br />
-            <a href="content.php">Cancel</a>
-        </td>
-    </tr>
+<div style="margin-top: 2em; border-top: 1px solid #000000;">
+    <h3>Pages in this subject:</h3>
+    <ul>
+        <?php
+        $subject_pages = get_pages_for_subject($connection,$sel_subject['id']);
+        while ($page = mysqli_fetch_array($subject_pages)) {
+            echo "<li>
+                    <a href=\"content.php?page={$page['id']}\">
+                        {$page['menu_name']}
+                    </a>
+                  </li>";
+        }
+        ?>
+    </ul>
+    <br />
+    <a href="new_page.php?subj=<?php echo $sel_subject['id']; ?>">
+        Add a new page to this subject
+    </a>
+</div>
+</td>
+</tr>
 </table>
 
 <?php require("includes/footer.php"); ?>
+

@@ -33,7 +33,7 @@
 
             <!-- ✅ EDIT PAGE LINK (THIS WAS MISSING) -->
             <a href="edit_page.php?page=<?php echo urlencode($sel_page['id']); ?>">
-                ✏️ Edit this page
+                 Edit this page
             </a>
 
         <?php } elseif (!is_null($sel_subject)) { ?>
@@ -45,7 +45,7 @@
 
             <!-- ✅ EDIT SUBJECT LINK -->
             <a href="edit_subject.php?subj=<?php echo urlencode($sel_subject['id']); ?>">
-                ✏️ Edit this subject
+                 Edit this subject
             </a>
 
             <br /><br />

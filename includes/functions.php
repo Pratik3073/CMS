@@ -1,6 +1,12 @@
 <?php
 // this file is the place to store all basic functions.
 
+function redirect_to($location = NULL){
+    if($location != NULL){
+    header("location: " . $location);
+    exit;
+    }
+}
 function confirm_query($result_set, $connection)
 {
     if (!$result_set) {
@@ -105,7 +111,7 @@ function navigation($sel_subject,$sel_page){
 
             $output.= " class=\"selected\"";
         }
-        $output.= "><a href=\"content.php?subj=" . urlencode($subject["id"]) . 
+        $output.= "><a href=\"edit_subject.php?subj=" . urlencode($subject["id"]) . 
                 "\">
                 {$subject["menu_name"]}</a></li>";
 
